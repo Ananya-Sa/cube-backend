@@ -14,7 +14,7 @@ def concat(up_face, right_face, front_face, down_face, left_face, back_face):
     solution = np.concatenate((solution, down_face), axis=None)
     solution = np.concatenate((solution, left_face), axis=None)
     solution = np.concatenate((solution, back_face), axis=None)
-    print(solution)
+    #print(solution)
     return solution
 
 
@@ -26,7 +26,7 @@ def detect_face(bgr_image_input):
     gray = cv2.morphologyEx(gray, cv2.MORPH_CLOSE, kernel)
 
     gray = cv2.adaptiveThreshold(gray, 20, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 5, 0)
-    cv2.imwrite()
+    # cv2.imwrite()
     try:
         _, contours, hierarchy = cv2.findContours(gray, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE)
     except:
@@ -92,7 +92,8 @@ def detect_face(bgr_image_input):
                 2] > 120:
                 blob_colors[i][3] = 6
                 face[i] = 6
-        # print(face)
+        #
+        print(face)
         if np.count_nonzero(face) == 9:
             # print(face)
             # print (blob_colors)
@@ -149,7 +150,7 @@ def main():
     right_face = [0, 0]
     down_face = [0, 0]
     back_face = [0, 0]
-    video = cv2.VideoCapture(0)
+    video = cv2.VideoCapture(1)
     is_ok, bgr_image_input = video.read()
     broke = 0
 
